@@ -1,34 +1,33 @@
-#include <iostream>
 #include "glad.h"
-#include <GLFW/glfw3.h> 
+#include <GLFW/glfw3.h>
+#include <iostream>
 
-int main()
-{
-    GLFWwindow *window;
+int main() {
+  GLFWwindow *window;
 
-    if (!glfwInit()) {
-        return -1;
-    }
-    
-    window = glfwCreateWindow(640, 480, "Window!", nullptr, nullptr);
-    glfwMakeContextCurrent(window);
+  if (!glfwInit()) {
+    return -1;
+  }
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cout << "Couldnt load opengl" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
+  window = glfwCreateWindow(640, 480, "Window!", nullptr, nullptr);
+  glfwMakeContextCurrent(window);
 
-    glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
-
-    while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
-
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        glfwSwapBuffers(window);
-    }
-
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    std::cout << "Couldnt load opengl" << std::endl;
     glfwTerminate();
-    return 0;
+    return -1;
+  }
+
+  glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
+
+  while (!glfwWindowShouldClose(window)) {
+    glfwPollEvents();
+
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glfwSwapBuffers(window);
+  }
+
+  glfwTerminate();
+  return 0;
 }
